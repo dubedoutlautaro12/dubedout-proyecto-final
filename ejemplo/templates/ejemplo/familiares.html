@@ -7,13 +7,17 @@
     <title>Document</title>
 </head>
 <body>
-
+    {% block titulo %}
     <h1>Lista de mis familiares</h1>
+    {% endblock %}
+
+    {% block contenido %}
     <ul>
     {% for familiar in lista_familiares %}
-       <li> Nombre: {{familiar.nombre}}, Dirección: {{familiar.direccion}}, Pasaporte: {{familiar.numero_pasaporte}} </li>
+       <li> Id: {{familiar.id}} Nombre: {{familiar.nombre}}, Dirección: {{familiar.direccion}}, Pasaporte: {{familiar.numero_pasaporte}} </li>
     {% endfor %}
     </ul>
-    
+    {% endblock %}
+        
 </body>
 </html>
