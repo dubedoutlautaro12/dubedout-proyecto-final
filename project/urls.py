@@ -15,7 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from ejemplo.views import index, saludar_a, saludar_especifico, sumar
+from ejemplo.views import index, saludar_a, saludar_especifico, sumar, buscar, monstrar_familiares, BuscarFamiliar
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -23,5 +24,9 @@ urlpatterns = [
     path('saludar_a/', saludar_a), #antes de la coma le doy el nombre y dsp pongo a que funcion llama
     path('saludar_especifico/<nombre>', saludar_especifico),
     path('sumar/<int:a>/<int:b>/',sumar),
+    path('buscar/', buscar),
+    path('mi-familia/', monstrar_familiares),
+    path('mi-familia/buscar', BuscarFamiliar.as_view())
 ]
+
 
