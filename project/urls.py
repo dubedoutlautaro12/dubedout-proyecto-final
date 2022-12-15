@@ -15,18 +15,24 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from ejemplo.views import index, saludar_a, saludar_especifico, sumar, buscar, monstrar_familiares, BuscarFamiliar
+from ejemplo.views import (buscar,
+                             monstrar_familiares, mostrar_mascotas,
+                            BuscarFamiliar, AltaFamiliar, ActualizarFamiliar,
+                            BorrarFamiliar, BuscarMascota, AltaMascota, ActualizarMascota )
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('saludar/', index), # ESTA ES LA NUEVA FUNCTION
-    path('saludar_a/', saludar_a), #antes de la coma le doy el nombre y dsp pongo a que funcion llama
-    path('saludar_especifico/<nombre>', saludar_especifico),
-    path('sumar/<int:a>/<int:b>/',sumar),
     path('buscar/', buscar),
     path('mi-familia/', monstrar_familiares),
-    path('mi-familia/buscar', BuscarFamiliar.as_view())
+    path('mi-familia/buscar', BuscarFamiliar.as_view()),
+    path('mi-familia/alta', AltaFamiliar.as_view()),
+    path('mi-familia/actualizar/<int:pk>',ActualizarFamiliar.as_view()),
+    path('mi-familia/borrar/<int:pk>', BorrarFamiliar.as_view()),
+    path('mascotas/', mostrar_mascotas),
+    path('mascotas/buscar', BuscarMascota.as_view()),
+    path('mascotas/alta', AltaMascota.as_view()),
+    path('mascotas/actualizar/<int:pk>', ActualizarMascota.as_view())
 ]
 
 
