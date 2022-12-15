@@ -17,7 +17,9 @@ def buscar(request):
     else:
         resultado = 'NO HAY MATCH'
     return render(request, 'ejemplo/buscar.html', {'resultado': resultado})
-    
+
+def pagina_principal(request):
+    return render (request, 'ejemplo/pagina_principal.html')
 
 def monstrar_familiares(request):
   lista_familiares = Familiar.objects.all()
@@ -172,3 +174,14 @@ class ActualizarMascota(View):
                                                       'msg_exito': msg_exito})
       
       return render(request, self.template_name, {"form": form})
+
+
+
+class BorrarMascota(View):
+  template_name = 'ejemplo/mascotas.html'
+  
+  def get(self, request, pk): 
+      mascota = get_object_or_404(Mascota, pk=pk)
+      mascota.delete()
+      mascotas = Mascota.objects.all()
+      return render(request, self.template_name, {'lista_mascotas': mascotas})

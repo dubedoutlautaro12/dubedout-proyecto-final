@@ -12,12 +12,19 @@
     {% endblock %}
 
     {% block contenido %}
+    <h2><a href="/mascotas/alta">Cargar una nueva mascota.</a></h2>
+
     <ul>
-        {% for mascota in lista_mascotas %}
-        <ul>
-            <li>Id: {{mascota.id}} Nombre: {{mascota.nombre}}, Dueño: {{mascota.dueno}}, Peso: {{mascota.peso}} KG</li>
-        </ul>
-        {% endfor %}
+    {% for mascota in lista_mascotas %}
+        <li>
+            
+        Id: {{mascota.id}} Nombre: {{mascota.nombre}}, Dueño: {{mascota.dueno}}, Peso: {{mascota.peso}} KG
+        <a href="/mascotas/actualizar/{{ mascota.id }}">Actualizar</a>
+        <a href="/mascotas/borrar/{{ mascota.id }}">Borrar</a>
+        </li>
+    {% endfor %}
+    </ul>
+    <a href="/pagina-principal">Volver a la pagina principal</a>
     {% endblock %}
         
 </body>
