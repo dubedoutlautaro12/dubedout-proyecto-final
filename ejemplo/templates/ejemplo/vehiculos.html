@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+{% extends 'ejemplo/base.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% block titulo %}
+    <h1>Lista de mis vehiculos.</h1>
+    {% endblock %}
+
+    
+    {% block contenido %}
+    <ul>
+    {% for vehiculo in lista_vehiculos %}
+        <li>
+        Id: {{vehiculo.id}} Dueno: {{vehiculo.dueno}} Tipo: {{vehiculo.tipo}} Patente: {{vehiculo.patente}}</li>
+    {% endfor %}
+    </ul>
+    <a href="/vehiculos/alta">Cargar un nuevo vehiculo.</a>
+    {% endblock %}
+
+
+</body>
+</html>

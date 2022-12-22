@@ -1,10 +1,12 @@
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
+from ejemplo.forms import Buscar 
 from ejemplo.models import Familiar
 from ejemplo.models import Mascota
-from ejemplo.forms import Buscar 
+from ejemplo.models import Vehiculo
 from ejemplo.forms import FamiliarForm
 from ejemplo.forms import MascotaForm
+from ejemplo.forms import VehiculoForm
 from django.views import View
 
 
@@ -185,3 +187,49 @@ class BorrarMascota(View):
       mascota.delete()
       mascotas = Mascota.objects.all()
       return render(request, self.template_name, {'lista_mascotas': mascotas})
+
+def mostrar_vehiculo(request):
+    lista_vehiculos = Vehiculo.objects.all()
+    return render(request, 'ejemplo/vehiculos.html', {'lista_vehiculos': lista_vehiculos})
+
+
+
+class BuscarVehiculo(View):
+    form_class= Buscar
+    template_name= 'ejemplo/buscar_vehiculo.html'
+    initial= {'dueno':''}
+    
+    def get(self, request):
+        form = self.form_class(initial=self.initial)
+        return render(request, self.template_name, {'form':form})
+
+    def post (self, request):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            nombre = form.cleaned_data.get('dueno')
+            lista_vehiculos = Vehiculo.object.filter(nombre__icontains=nombre).all()
+            form = self.form_class(initial=self.initial)
+            return render(request, self.template_name, {'form':form,
+                                                        'lista_vehiculos': lista_vehiculos})
+        return render (request, self.template_name, {'form': form})
+
+class AltaVehiculo(View):
+    form_class = VehiculoForm
+    template_name = 'ejemplo/alta_vehiculo.html'
+    initial= {'dueno':'', 'tipo':'', 'patente':''}
+
+    def get(self,request):
+        form = self.form_class(initial=self.initial)
+        return render (request, self.template_name, {'form':form})
+
+    def post(self, request):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            form.save()
+            msg_exito = f"Se cargo con éxito el {form.cleaned_data.get('tipo')} de {form.cleaned_data.get('dueno')} "
+            form = self.form_class(initial=self.initial)
+            return render(request, self.template_name, {'form':form, 
+                                                        'msg_exito': msg_exito})
+        
+        return render(request, self.template_name, {"form": form})
+        

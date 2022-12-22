@@ -17,12 +17,15 @@ class Mascota(models.Model):
     def __str__(self):
       return f"{self.nombre}, {self.peso}, {self.dueno}, {self.id}"
 
+
 class Vehiculo(models.Model):
-    tipo = models.CharField(max_length=100)
-    modelo = models.CharField(max_length=200)
-    patente = models.CharField(max_length=7)
-    
-    def __str__(self):
-      return f"{self.tipo}, {self.numero_pasaporte}, {self.modelo}, {self.id}"
+ dueno= models.CharField(max_length=100)
+ tipo= models.CharField(max_length=100)
+ patente =models.CharField(max_length=9)
+
+ def __str__(self):
+  return f"{self.dueno}, {self.tipo}, {self.patente}, {self.id}"
+
+
 
 

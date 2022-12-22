@@ -1,0 +1,18 @@
+{% extends 'ejemplo/base.html' %}
+
+{% block contenido %}
+
+      <h1>Buscar vehiculo por nombre</h1>
+    
+      <form action="/vehiculos/buscar" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Submit">
+      </form>
+
+    {% for vehiculo in lista_vehiculos %}
+    <ul>
+          <li> Id: {{vehiculo.id}} Dueno: {{vehiculo.dueno}} Tipo: {{vehiculo.tipo}} Patente: {{vehiculo.patente}}</li>
+    </ul>
+    {% endfor %}
+    {% endblock %}
