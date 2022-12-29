@@ -22,9 +22,10 @@ class Vehiculo(models.Model):
  dueno= models.CharField(max_length=100)
  tipo= models.CharField(max_length=100)
  patente =models.CharField(max_length=9)
+ modelo = models.CharField(max_length=100)
 
  def __str__(self):
-  return f"{self.dueno}, {self.tipo}, {self.patente}, {self.id}"
+    return f"{self.dueno}, {self.tipo}, {self.patente}, {self.modelo} {self.id}"
 
 
 

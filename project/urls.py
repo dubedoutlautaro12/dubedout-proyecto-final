@@ -19,7 +19,7 @@ from ejemplo.views import (buscar,
                              monstrar_familiares, mostrar_mascotas,
                             BuscarFamiliar, AltaFamiliar, ActualizarFamiliar,
                             BorrarFamiliar, BuscarMascota, AltaMascota, ActualizarMascota,BorrarMascota, pagina_principal,
-                            mostrar_vehiculo, BuscarVehiculo, AltaVehiculo, ActualizarVehiculo)
+                            mostrar_vehiculo, BuscarVehiculo, AltaVehiculo, ActualizarVehiculo, BorrarVehiculo)
 
 
 urlpatterns = [
@@ -39,7 +39,8 @@ urlpatterns = [
     path('vehiculos/', mostrar_vehiculo),
     path('vehiculos/buscar', BuscarVehiculo.as_view()),
     path('vehiculos/alta', AltaVehiculo.as_view()),
-    path("vehiculos/actualizar/<int:pk>", ActualizarVehiculo.as_view())
+    path("vehiculos/actualizar/<int:pk>", ActualizarVehiculo.as_view()),
+    path('vehiculos/borrar/<int:pk>' , BorrarVehiculo.as_view())
 ]
 
 

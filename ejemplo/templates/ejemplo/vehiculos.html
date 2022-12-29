@@ -13,16 +13,19 @@
     {% endblock %}
 
     
-    {% block contenido %}
+     {% block contenido %}
+    <h2><a href="/vehiculos/alta">Cargar un nuevo vehiculo.</a><h2>
+
     <ul>
     {% for vehiculo in lista_vehiculos %}
         <li>
-        Id: {{vehiculo.id}} Dueno: {{vehiculo.dueno}} Tipo: {{vehiculo.tipo}} Patente: {{vehiculo.patente}}
+        Id: {{vehiculo.id}} Dueno: {{vehiculo.dueno}} Tipo: {{vehiculo.tipo}} Patente: {{vehiculo.patente}} Modelo: {{vehiculo.modelo}}
         <a href="/vehiculos/actualizar/{{ vehiculo.id }}">Actualizar</a>
+        <a href="/vehiculos/borrar/{{ vehiculo.id }}">Borrar</a>
     </li>
     {% endfor %}
     </ul>
-    <a href="/vehiculos/alta">Cargar un nuevo vehiculo.</a>
+    <a href="/pagina-principal">Volver a la pagina principal</a>
     {% endblock %}
 
 

@@ -216,7 +216,7 @@ class BuscarVehiculo(View):
 class AltaVehiculo(View):
     form_class = VehiculoForm
     template_name = 'ejemplo/alta_vehiculo.html'
-    initial= {'dueno':'', 'tipo':'', 'patente':''}
+    initial= {'dueno':'', 'tipo':'', 'patente':'', 'modelo':''}
 
     def get(self,request):
         form = self.form_class(initial=self.initial)
@@ -238,7 +238,7 @@ class AltaVehiculo(View):
 class ActualizarVehiculo(View):
   form_class = VehiculoForm
   template_name = 'ejemplo/actualizar_vehiculo.html'
-  initial = {'dueno':'', 'tipo':'', 'patente':''}
+  initial = {'dueno':'', 'tipo':'', 'patente':'', 'modelo':''}
   
   def get (self, request, pk): 
       vehiculo = get_object_or_404(Vehiculo, pk=pk)
@@ -258,3 +258,14 @@ class ActualizarVehiculo(View):
                                                       'msg_exito': msg_exito})
       
       return render(request, self.template_name, {"form": form})
+
+
+class BorrarVehiculo(View):
+  template_name = 'ejemplo/vehiculos.html'
+  
+  def get(self, request, pk): 
+      vehiculo = get_object_or_404(Vehiculo, pk=pk)
+      vehiculo.delete()
+      vehiculos = Vehiculo.objects.all()
+      return render(request, self.template_name, {'lista_vehiculos': vehiculos})
+

@@ -21,5 +21,5 @@ class MascotaForm(forms.ModelForm):
 class VehiculoForm(forms.ModelForm):
   class Meta:
     model= Vehiculo
-    fields = ['dueno', 'tipo', 'patente']
+    fields = ['dueno', 'tipo', 'patente', 'modelo']
 
