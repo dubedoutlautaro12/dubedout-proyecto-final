@@ -14,12 +14,14 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.views.generic import TemplateView
 from django.urls import path
 from ejemplo.views import (buscar,
                              monstrar_familiares, mostrar_mascotas,
                             BuscarFamiliar, AltaFamiliar, ActualizarFamiliar,
                             BorrarFamiliar, BuscarMascota, AltaMascota, ActualizarMascota,BorrarMascota, pagina_principal,
-                            mostrar_vehiculo, BuscarVehiculo, AltaVehiculo, ActualizarVehiculo, BorrarVehiculo)
+                            mostrar_vehiculo, BuscarVehiculo, AltaVehiculo, ActualizarVehiculo, BorrarVehiculo, FamiliarList,
+                            FamiliarCrear, FamiliarBorrar, FamiliarActualizar)
 
 
 urlpatterns = [
@@ -40,7 +42,12 @@ urlpatterns = [
     path('vehiculos/buscar', BuscarVehiculo.as_view()),
     path('vehiculos/alta', AltaVehiculo.as_view()),
     path("vehiculos/actualizar/<int:pk>", ActualizarVehiculo.as_view()),
-    path('vehiculos/borrar/<int:pk>' , BorrarVehiculo.as_view())
+    path('vehiculos/borrar/<int:pk>' , BorrarVehiculo.as_view()),
+    path('panel-familia/', FamiliarList.as_view()),
+    path('panel-familia/crear', FamiliarCrear.as_view()), 
+    path('panel-familia/<int:pk>/borrar', FamiliarBorrar.as_view()),
+    path('panel-familia/<int:pk>/actualizar', FamiliarActualizar.as_view()),
+    path('succes_update_message/', TemplateView.as_view(template_name= 'ejemplo/succes_update_message.html'))
 ]
 
 

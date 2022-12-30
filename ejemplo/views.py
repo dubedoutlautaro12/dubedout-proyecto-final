@@ -8,6 +8,7 @@ from ejemplo.forms import FamiliarForm
 from ejemplo.forms import MascotaForm
 from ejemplo.forms import VehiculoForm
 from django.views import View
+from django.views.generic import ListView, CreateView, DeleteView, UpdateView
 
 
 def buscar(request):
@@ -268,4 +269,25 @@ class BorrarVehiculo(View):
       vehiculo.delete()
       vehiculos = Vehiculo.objects.all()
       return render(request, self.template_name, {'lista_vehiculos': vehiculos})
+
+
+class FamiliarList(ListView):
+    model = Familiar
+
+class FamiliarCrear(CreateView):
+    model=Familiar
+    success_url= '/panel-familia'
+    fields = ['nombre', 'direccion', 'numero_pasaporte']
+
+
+class FamiliarBorrar(DeleteView):
+    model= Familiar
+    success_url= '/panel-familia'
+
+class FamiliarActualizar(UpdateView):
+    model = Familiar 
+    success_url= '/succes_update_message'
+    fields = ['nombre', 'direccion', 'numero_pasaporte']
+
+
 
