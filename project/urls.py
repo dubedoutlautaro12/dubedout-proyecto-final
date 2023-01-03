@@ -22,7 +22,7 @@ from ejemplo.views import (buscar,
                             BorrarFamiliar, BuscarMascota, AltaMascota, ActualizarMascota,BorrarMascota, pagina_principal,
                             mostrar_vehiculo, BuscarVehiculo, AltaVehiculo, ActualizarVehiculo, BorrarVehiculo, FamiliarList,
                             FamiliarCrear, FamiliarBorrar, FamiliarActualizar)
-
+from ejemplo_2.views import index, PostList, PostCrear
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -47,7 +47,10 @@ urlpatterns = [
     path('panel-familia/crear', FamiliarCrear.as_view()), 
     path('panel-familia/<int:pk>/borrar', FamiliarBorrar.as_view()),
     path('panel-familia/<int:pk>/actualizar', FamiliarActualizar.as_view()),
-    path('succes_update_message/', TemplateView.as_view(template_name= 'ejemplo/succes_update_message.html'))
+    path('succes_update_message/', TemplateView.as_view(template_name= 'ejemplo/succes_update_message.html')),
+    path('ejemplo-dos/', index, name='ejemplo-dos-index'),
+    path('ejemplo-dos/listar/', PostList.as_view(), name='ejemplo-dos-listar'),
+    path('ejemplo-dos/crear/', PostCrear.as_view(), name='ejemplo-dos-crear')
 ]
 
 
