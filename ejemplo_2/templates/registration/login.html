@@ -1,0 +1,9 @@
+{% extends 'ejemplo_2/base.html' %}
+{% block contenido %}
+    <h2> Ingresar </h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p}} 
+        <input type="Submit" value="Ingresar">
+    </form>
+{% endblock %}

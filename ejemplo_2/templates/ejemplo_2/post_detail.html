@@ -1,0 +1,17 @@
+{% extends 'ejemplo_2/base.html' %}
+{% block contenido %}
+<ul>
+    <h1>{{object.titulo}}</h1>
+    <h2>{{object.sub_titulo}}</h2>
+    <div>
+        {{object.texto}}
+    </div>
+    {{object.publicado_el}}
+    <div>
+        <img src="{{object.imagen.url}}" height='500'>
+    </div>
+</ul>
+
+<a href="{% url 'listar' %}"> Volver a la pagina de inicio</a>
+
+{% endblock %}
